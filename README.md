@@ -1,0 +1,21 @@
+README for CDICE
+
+This version of CDICE was written to accept parameters from the commandline and return endogenous variables of interest. This code was designed for use in DICE parameter sensitivity analyses.
+
+There are four (4) pieces of code:
+
+CDICE.cpp - The nuts and bolts of the model. CDICEInit.cpp - Function(s) that initialize the DICE model. CDICEMain.cpp - Main function call. Handles input/output of model run. CDICE.h - CDICE header file. Contains structure definitions and function prototypes
+
+To begin, build the model from the source code. There's an included Makefile which will build the model using g++. This Makefile should work on a Linux or a Mac without much trouble. For windows, use an appropriate C++ compiler.
+
+Once compiled, run the model from the commandline. Assuming you called the compiled binary "cdice":
+
+./cdice [parms]
+
+...where [parms] is replaced with a space-delimited line of parameters. There should be a total of 180 values passed to the binary. There are 60 model parameters followed by the control policy (1 value per period, 60 periods) and the savings rate (1 value per period, 60 periods). A description of the parameters can be found in the "parm_desc.txt" file. As an example, the file "parm_example.txt" contains a line of parameters that result in the default DICE optimal run.
+
+Output from the code is a space-delimited series of endogenous variables. Currently, the Utility, NPV Damages, and NPV abatement cost are printed.
+
+This compiled binary can be easily called from other codes using the appropriate system commands. A wrapper script around this binary is likely the best way to loop over multiple sets of parameters while capturing the output.
+
+See the comment sections at the start of each piece of code for appropriate copyright and distribution license agreements.

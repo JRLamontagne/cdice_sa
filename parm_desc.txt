@@ -32,27 +32,22 @@ Parameter 23: mueq			Equilibrium concentration in upper strata [GtC]
 Parameter 24: mleq			Equilibrium concentration in lower strata [GtC]
 Parameter 25: b12			Carbon control parameter
 Parameter 26: b23			Carbon control parameter
-Parameter 27: t2xco2			Equilibrium temperature impact [dC per doubling CO2]
+Parameter 27: t2xco2			Quantile of the equilibrium temperature impact [dC per doubling CO2] distribution
 Parameter 28: fex0			2010 forcings of non-CO2 greenhouse gases (GHG) [Wm-2]
 Parameter 29: fex1			2100 forcings of non-CO2 GHG [Wm-2]
-Parameter 30: tocean0			Initial lower stratum temperature change [dC from 1900]
-Parameter 31: tatm0			Initial atmospheric temperature change [dC from 1900]
-Parameter 32: c1			Climate equation coefficient for upper level
-Parameter 33: c3			Transfer coefficient upper to lower stratum
-Parameter 34: c4			Transfer coefficient for lower level
-Parameter 35: fco22x			Forcings of equilibrium CO2 doubling [Wm-2]
-Parameter 36: a10			Initial damage intercept
-Parameter 37: a20			Initial damage quadratic term
-Parameter 38: a1			Damage intercept
-Parameter 39: a2			Damage quadratic term
-Parameter 40: a3			Damage exponent
-Parameter 41: expcost2			Exponent of control cost function
-Parameter 42: pback			Cost of backstop [2005$ per tCO2 2010]
-Parameter 43: gback			Initial cost decline backstop [cost per period]
-Parameter 44: limmiu			Upper limit on control rate after 2150
-Parameter 45: tnopol			Period before which no emissions controls base
-Parameter 46: cprice0			Initial base carbon price [2005$ per tCO2]
-Parameter 47: gcprice			Growth rate of base carbon price (per year)
-Parameter 48: fosslim			Maximum cummulative extraction fossil fuels [GtC]
-Parameter 49-137: miu			Emission control rate as fraction of GHG emissions (decision variable)
-Parameter 138-227: s			Gross savings rate as fraction of gross world production (decision variable)
+Parameter 30: fco22x			Forcings of equilibrium CO2 doubling [Wm-2]
+Parameter 31: a10			Initial damage intercept
+Parameter 32: a20			Initial damage quadratic term
+Parameter 33: a1			Damage intercept
+Parameter 34: a2			Damage quadratic term
+Parameter 35: a3			Damage exponent
+Parameter 36: expcost2			Exponent of control cost function
+Parameter 37: pback			Cost of backstop [2005$ per tCO2 2010]
+Parameter 38: gback			Initial cost decline backstop [cost per period]
+Parameter 39: limmiu			Upper limit on control rate after 2150
+Parameter 40: tnopol			Period before which no emissions controls base
+Parameter 41: cprice0			Initial base carbon price [2005$ per tCO2]
+Parameter 42: gcprice			Growth rate of base carbon price (per year)
+Parameter 43: fosslim			Maximum cummulative extraction fossil fuels [GtC]
+Parameter 44-142: miu			Emission control rate as fraction of GHG emissions (decision variable)
+Parameter 143-232: s			Gross savings rate as fraction of gross world production (decision variable)

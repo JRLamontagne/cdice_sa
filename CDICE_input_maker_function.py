@@ -18,7 +18,7 @@ def cdice_input_maker(type_analysis,func_form,year):
 	
     #Transform uniform (0,1) variates to log-normal for the climate sensitivity
     if type_analysis == 1 or type_analysis == 2:
-        SAvars[:,16] = np.exp(norm.ppf(SAvars[:,16],1.098001424,0.265206276)) #confirm 16 index still right.
+        SAvars[:,14] = np.exp(norm.ppf(SAvars[:,14],1.098001424,0.265206276))
 
     npzfile=np.load("configuration.npz")
     nominal = npzfile['nominal']#need to transform txco2 to log-normal

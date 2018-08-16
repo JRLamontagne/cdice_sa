@@ -1,6 +1,6 @@
 #Param Name	Include	Nominal	Low	High
-elasmu	1	1.45	1.16	1.74
-prstp	1	0.015	0.012	0.018
+elasmu	0	1.45	1.16	1.74
+prstp	0	0.015	0.012	0.018
 gama	0	0.3	0.24	0.36
 pop0	1	7403	7255	7551
 popadj	1	0.134	0.067	0.201

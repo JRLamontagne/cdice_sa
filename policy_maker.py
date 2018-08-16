@@ -8,7 +8,7 @@ def make_policy_single(func_form,a,year):
     import numpy as np
     a = float(a)
     BAU = [0.0299,0.0323,0.0349,0.0377,0.0408,0.0441,0.0476,0.0515,0.0556,0.0601,0.0650,0.0702,0.0759,0.0821,0.0887,0.0959,0.1036,0.1120]
-    YEARS={'2020':1,'2030':3,'2040':5,'2050':7,'2060':9,'2070':11,'2075':12}
+    YEARS={'2020':1,'2030':3,'2040':5,'2050':7,'2060':9,'2070':11,'2075':12,'2200':37}
     beta0 = BAU[0]
     bau = BAU[YEARS[str(year)]]
     year = float(YEARS[str(year)])
@@ -23,6 +23,9 @@ def make_policy_single(func_form,a,year):
             policy[t-1] = np.min([a1*(t**2.0)+beta0,1.0])
         elif func_form == 'exp':
             a1 = (1/year)*np.log((1/beta0)*(a+bau*(1-a)))
+            policy[t-1] = np.min([beta0*np.exp(a1*t),1.0])
+        elif func_form == 'exp2':
+            a1 = np.log(beta0)/(a*(27-3.0)-27)
             policy[t-1] = np.min([beta0*np.exp(a1*t),1.0])
         else:
             raise ValueError('Function Form not Recognized')

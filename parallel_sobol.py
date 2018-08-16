@@ -18,7 +18,7 @@ def parallel_sobol(input_filename,n_resample,N,D,output_filename):
     nprocs = comm.size
 
     #Determine the chunk which each processor will neeed to do
-    count = 60/nprocs
+    count = 64/nprocs
 
     #Use the processor rank to determine the chunk of work each processor will do
     start = rank*count

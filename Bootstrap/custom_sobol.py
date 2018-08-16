@@ -5,7 +5,7 @@ Created on Sun Jul 02 23:16:01 2017
 @author: jrl276
 """
 
-def custom_sobol(input_filename,n_resample,start_ind,end_ind,N,D):
+def custom_sobol(input_filename,n_resample,start_ind,end_ind,N,D,output_filename):
     import numpy as np
     H=np.loadtxt(input_filename)
     Y_hld = H[:,start_ind:end_ind+1]
@@ -27,6 +27,7 @@ def custom_sobol(input_filename,n_resample,start_ind,end_ind,N,D):
     
     for i in range(0,tsteps):
         Y = Y_hld[:,i]
+        Y = (Y - Y.mean())/Y.std()
         A=Y[0:Y.size:step]
         B = Y[(step - 1):Y.size:step]
 
@@ -38,7 +39,7 @@ def custom_sobol(input_filename,n_resample,start_ind,end_ind,N,D):
             S1[j,i]=np.mean(B * (AB[:,j] - A), axis=0) / np.var(np.r_[A, B], axis=0)
             ST[j,i]=0.5 * np.mean((A - AB[:,j]) ** 2, axis=0) / np.var(np.r_[A, B], axis=0)
 
-            for k in range(j,D):
+            for k in range(j+1,D):
                 Vjk = np.mean(BA[:,j] * AB[:,k] - A * B, axis=0) / np.var(np.r_[A, B], axis=0)
                 Sj = S1[j,i]
                 Sk = np.mean(B * (AB[:,k] - A), axis=0) / np.var(np.r_[A, B], axis=0)
@@ -53,21 +54,16 @@ def custom_sobol(input_filename,n_resample,start_ind,end_ind,N,D):
             
             
             for j in range(n_resample):
-                A_re = A[r[j,:]]
-                B_re = A[r[j,:]]
+                A_re = A[r[:,j]]
+                B_re = A[r[:,j]]
+                AB_re = AB[r[:,j],:]
+                BA_re = BA[r[:,j],:]
                 
                 for k in range(D):
-                    AB_re = AB[r[j,:],k]
-                    BA_re = BA[r[j,:],k]
-                    print np.shape(A_re)
-                    print np.shape(AB_re)
-                    print np.shape(r)
-                    print np.shape(r[j,:])
-                    print np.shape(r[:,j])
                     S1_re[k,j]=np.mean(B_re * (AB_re[:,k] - A_re), axis=0) / np.var(np.r_[A_re, B_re], axis=0)
                     ST_re[k,j]=0.5 * np.mean((A_re - AB_re[:,k]) ** 2, axis=0) / np.var(np.r_[A_re, B_re], axis=0)
                     
-                    for l in range(k,D):
+                    for l in range(k+1,D):
                         Vjk = np.mean(BA_re[:,k] * AB_re[:,l] - A_re * B_re, axis=0) / np.var(np.r_[A_re, B_re], axis=0)
                         Sj = S1_re[k,j]
                         Sk = np.mean(B_re * (AB_re[:,l] - A_re), axis=0) / np.var(np.r_[A_re, B_re], axis=0)
@@ -75,7 +71,7 @@ def custom_sobol(input_filename,n_resample,start_ind,end_ind,N,D):
             for j in range(D):
                 S1_conf[j,i]=S1_re[j,:].std(ddof=1)
                 ST_conf[j,i]=ST_re[j,:].std(ddof=1)
-                for k in range(j,D):
+                for k in range(j,D):                    
                     S2_conf[j,k,i]=S2_re[j,k,:].std(ddof=1)
-    filename = "Boot_" % N
+    filename = "%s_%i_%i" % (output_filename,N,start_ind)
     np.savez(filename,S1=S1,S1_conf=S1_conf,S2=S2,S2_conf=S2_conf,ST=ST,ST_conf=ST_conf)

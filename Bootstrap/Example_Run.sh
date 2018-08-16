@@ -1,5 +1,5 @@
-#PBS -l nodes=4:ppn=15
-#PBS -l walltime=60:00:00
+#PBS -l nodes=8:ppn=4
+#PBS -l walltime=40:00:00
 #PBS -j oe
 #PBS -o output.txt
 
@@ -8,9 +8,9 @@ cd $PBS_O_WORKDIR
 module load python-2.7.5
 
 #read nProcs
-nProcs=60
+nProcs=32
 echo $nProcs
-d=29
+d=25
 
 
 
@@ -34,7 +34,7 @@ python -c "from sobol_bootstrap import sobol_sample; sobol_sample('SALib_Input.t
 
 # Construct CDICE input sequences
 echo "Constructing CDICE Sequences..."
-python  -c "from CDICE_input_maker_function import cdice_input_maker; cdice_input_maker(1)"
+python  -c "from CDICE_input_maker_function import cdice_input_maker; cdice_input_maker(1,'exp2',2050)"
 
 mpirun a.exe "CDICE_input.txt" $(expr $number \* $d \* 2 + $number \* 2)
 
@@ -43,5 +43,12 @@ echo $nProcs
 ./parsing_CDICE.sh
 
 # Compute Sobol Indicies
-python -c "from sobol_bootstrap import sobol_index; sobol_index('SALib_Input.txt',100000,100)"
-#######################################################################################################
+mpirun python -c "from parallel_sobol import parallel_sobol; parallel_sobol('Dam.txt',100,100000,25,'Dam')"
+mpirun python -c "from parallel_sobol import parallel_sobol; parallel_sobol('Abat.txt',100,100000,25,'Abat')"
+mpirun python -c "from parallel_sobol import parallel_sobol; parallel_sobol('Tatm.txt',100,100000,25,'Tatm')"
+
+python -c "from custom_sobol import custom_sobol; custom_sobol('NPV_Dam.txt',100,27,27,100000,25,'NPV_Dam')"
+python -c "from custom_sobol import custom_sobol; custom_sobol('NPV_Abat.txt',100,27,27,100000,25,'NPV_Abat')"
+
+python -c "from custom_sobol import custom_sobol; custom_sobol('NPV_Dam.txt',100,17,17,100000,25,'NPV_Dam2')"
+python -c "from custom_sobol import custom_sobol; custom_sobol('NPV_Abat.txt',100,17,17,100000,25,'NPV_Abat2')"

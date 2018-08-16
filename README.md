@@ -1,11 +1,9 @@
-#Sensitivity Analysis and Scenario Discovery for DICE
+# Sensitivity Analysis and Scenario Discovery for DICE
 
-###Overview###
-This software package implements the [Dynamic Integrated Climate-Economic model (DICE)] (https://sites.google.com/site/williamdnordhaus/dice-rice) in C++ (CDICE) for scenario discovery and sensitivity analyses purposes.  This repository consists of a C++ implementation of DICE (CDICE), Python supplementary functions and shell scripts to construct the input/output from CDICE for use in sensitivity analyses, and a an example implementation of logistic regression for scenario discovery.  This version of CDICE is adapted from earlier work by [Garner et al.](https://github.com/scrim-network/cdice_doeclim), and has been adapted for use in sensitivity analyses and to run in parallel in HPC settings using MPI.  This repository also relies on the Python-based sensitivity analysis library [SALib](https://github.com/SALib/SALib).  
+**Overview:**
+This software package implements the [Dynamic Integrated Climate-Economic model (DICE)](https://sites.google.com/site/williamdnordhaus/dice-rice) in C++ (CDICE) for scenario discovery and sensitivity analyses purposes.  This repository consists of a C++ implementation of DICE (CDICE), Python supplementary functions and shell scripts to construct the input/output from CDICE for use in sensitivity analyses, and a an example implementation of logistic regression for scenario discovery.  This version of CDICE is adapted from earlier work by [Garner et al.](https://github.com/scrim-network/cdice_doeclim), and has been adapted for use in sensitivity analyses and to run in parallel in HPC settings using MPI.  This repository also relies on the Python-based sensitivity analysis library [SALib](https://github.com/SALib/SALib).  
 
-CDICE is composed of four (4) pieces of code:
-
-CDICE.cpp - The nuts and bolts of the model. CDICEInit.cpp - Function(s) that initialize the DICE model. CDICEMain.cpp - Main function call. Handles input/output of model run. CDICE.h - CDICE header file. Contains structure definitions and function prototypes
+CDICE is composed of four (4) pieces of code. CDICE.cpp - The nuts and bolts of the model. CDICEInit.cpp - Function(s) that initialize the DICE model. CDICEMain.cpp - Main function call. Handles input/output of model run. CDICE.h - CDICE header file. Contains structure definitions and function prototypes
 
 To begin, build the model from the source code. The Makefile makes use of mpic++ and should work on Linux (tested on Centos 6.3) or Mac without much trouble. For Windows, use an appropriate C++ MPI compiler. The CDICE executable will except a space delimited file of parameters.  Each line of the file should be a unique scenario, and each line should include 232 values.  The meaning of each of these values is described by parm_desc.txt and an example input is provided in sample_parms.txt.
 

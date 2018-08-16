@@ -17,5 +17,9 @@ The data directory contains all of the data used to conduct the analysis and gen
 Python 2.7.5 including packages: [Numpy](http://www.numpy.org/), [Scipy](https://www.scipy.org/), [statsmodels](https://www.statsmodels.org/stable/index.html), and [mpi4py](https://pypi.org/project/mpi4py/)
 
 **Citation:**
+```
 Lamontagne, J.R., P. M. Reed, G. Marangoni, K. Keller and G. G. Garner. Robust pathways to tolerable climate futures require immediate
 global action, Nature Climate Change, (in Review), 2018.
+```
+### License
+Copyright (C) 2018 Jon Lamontagne. Released under the [MIT liscense](LICENSE.md).

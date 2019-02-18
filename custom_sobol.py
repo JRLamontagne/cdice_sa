@@ -55,7 +55,7 @@ def custom_sobol(input_filename,n_resample,start_ind,end_ind,N,D,output_filename
             
             for j in range(n_resample):
                 A_re = A[r[:,j]]
-                B_re = A[r[:,j]]
+                B_re = B[r[:,j]]
                 AB_re = AB[r[:,j],:]
                 BA_re = BA[r[:,j],:]
                 
